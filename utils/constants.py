@@ -7,5 +7,9 @@ LIST_CREATE_ALLOWED_METHODS = {
     "get": "list",
     "post": "create",
 }
-
-
+POST_ONLY_ALLOWED_METHODS = {
+    "post": "create",
+}
+LIST_ONLY_ALLOWED_METHODS = {
+    "get": "list",
+}

@@ -4,6 +4,10 @@ from .models import Lender
 from .serializers import LenderSerializer
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from rest_framework.pagination import PageNumberPagination
+
+class LenderPagination(PageNumberPagination):
+    page_size = 5
 
 class LenderViewSet(viewsets.ModelViewSet):
     """
@@ -12,11 +16,19 @@ class LenderViewSet(viewsets.ModelViewSet):
     permission_classes = []
     serializer_class = LenderSerializer
     queryset = Lender.objects.all()
+    pagination_class = LenderPagination
 
     @swagger_auto_schema(
         tags=["Lender"],
         request_body=LenderSerializer
     )
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.action == "list":
+            return queryset.filter(active=True)
+        return queryset
+
     def partial_update(self, request, *args, **kwargs):
         return super().partial_update(request, *args, **kwargs)
     

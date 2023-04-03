@@ -97,7 +97,7 @@ class LenderBulkExportViewSet(viewsets.ViewSet):
         },
         produces='application/csv',
     )
-    def list(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs):
         lenders_data = Lender.objects.all().values()
         response = HttpResponse(
             content_type='text/csv',

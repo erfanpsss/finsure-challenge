@@ -10,6 +10,6 @@ LIST_CREATE_ALLOWED_METHODS = {
 POST_ONLY_ALLOWED_METHODS = {
     "post": "create",
 }
-LIST_ONLY_ALLOWED_METHODS = {
-    "get": "list",
+GET_ONLY_ALLOWED_METHODS = {
+    "get": "retrieve",
 }
